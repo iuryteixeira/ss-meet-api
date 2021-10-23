@@ -23,14 +23,13 @@ services:
       - postgres-server
     networks:
       - meet-compose-network
+
   meet-api:
     container_name: "meep-api"
     build: .
-    ports:
-      - "8081:8081"
     networks:
       - meet-compose-network
 
 networks:
-  ticket-compose-network:
+  meet-compose-network:
     driver: bridge
