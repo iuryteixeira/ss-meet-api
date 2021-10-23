@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  postgres-server:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "123123"
+    ports:
+      - "15432:5432"
+    volumes:
+      - C:\docker-data\pg:/var/lib/postgresql/data
+    networks:
+      - meet-compose-network
+      
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "app@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "123123"
+    ports:
+      - "16543:80"
+    depends_on:
+      - postgres-server
+    networks:
+      - meet-compose-network
+  meet-api:
+    container_name: "meep-api"
+    build: .
+    ports:
+      - "8081:8081"
+    networks:
+      - meet-compose-network
+
+networks:
+  ticket-compose-network:
+    driver: bridge
