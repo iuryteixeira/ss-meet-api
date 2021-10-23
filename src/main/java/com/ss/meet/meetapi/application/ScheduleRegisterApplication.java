@@ -5,6 +5,7 @@ import com.ss.meet.meetapi.domain.schedule.Schedule;
 public interface ScheduleRegisterApplication {
     /**
      * Create a schedule by subject
+     * 
      * @param subject
      * @return
      */
