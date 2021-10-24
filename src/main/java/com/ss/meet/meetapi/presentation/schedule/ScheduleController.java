@@ -56,7 +56,7 @@ public class ScheduleController {
 			@ApiResponse(responseCode = "201", description = "Schedule Created", content = {
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Schedule.class)) }),
 			@ApiResponse(responseCode = "400", description = "Invalid fields") })
-	@PostMapping("/")
+	@PostMapping("")
 	public ResponseEntity<?> create(@RequestBody @Valid ScheduleCreateDTO scheduleCreateDTO) {
 		try {
 			logger.info("Received schedule {0}", scheduleCreateDTO);
@@ -91,7 +91,7 @@ public class ScheduleController {
 	@Operation(summary = "List all schedule")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "List all schedules", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = Schedule.class)))) })
-	@GetMapping(value = "/")
+	@GetMapping(value = "")
 	public ResponseEntity<List<Schedule>> list() {
 		return new ResponseEntity<>(scheduleSearchApplication.all(), HttpStatus.OK);
 	}
