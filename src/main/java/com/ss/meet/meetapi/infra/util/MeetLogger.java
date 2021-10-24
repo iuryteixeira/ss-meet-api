@@ -12,19 +12,19 @@ public class MeetLogger {
         this.logger = LoggerFactory.getLogger(context);
     }
 
-    public static MeetLogger instance(Class context){
+    public static MeetLogger instance(Class context) {
         return new MeetLogger(context);
     }
 
-    public void info(String text, Object... values){
+    public void info(String text, Object... values) {
         logger.info(MessageFormat.format(text, values));
     }
-    
-    public void error(String text, Object... values){
+
+    public void error(String text, Object... values) {
         logger.error(MessageFormat.format(text, values));
     }
-    
-    public void error(String text, Throwable throwable, Object... values){
+
+    public void error(String text, Throwable throwable, Object... values) {
         logger.error(MessageFormat.format(text, values), throwable);
     }
 }

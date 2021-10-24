@@ -22,7 +22,7 @@ public class ScheduleSearchApplicationImpl implements ScheduleSearchApplication 
     @Override
     public Schedule findById(Long id) {
         logger.info("Before find by id {0}", id);
-        return scheduleRepository.findById(id).orElseThrow(() -> new MeetException("Schedule not found", 404));
+        return scheduleRepository.findById(id).orElseThrow(() -> new MeetException("Schedule not found", 400));
     }
 
     @Override

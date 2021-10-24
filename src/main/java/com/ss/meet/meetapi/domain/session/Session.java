@@ -1,7 +1,6 @@
 package com.ss.meet.meetapi.domain.session;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,12 +40,14 @@ public class Session extends AuditedEntity {
 
     /**
      * Create a session with start time and duration time
+     * 
      * @param startAt
      * @param duration
      */
-    public Session(LocalDateTime startAt, Integer duration) {
+    public Session(Schedule schedule, LocalDateTime startAt, Integer duration) {
         this.startAt = startAt;
-        this.duration = Optional.ofNullable(duration).orElse(1);
+        this.duration = duration;
+        this.schedule = schedule;
     }
 
     public Long getId() {
@@ -57,38 +58,21 @@ public class Session extends AuditedEntity {
         return startAt;
     }
 
-    public void setStartAt(LocalDateTime startAt) {
-        this.startAt = startAt;
-    }
-
-
     public LocalDateTime getEndAt() {
         return endAt;
     }
 
-
-    public void setEndAt(LocalDateTime endAt) {
+    public Session setEndAt(LocalDateTime endAt) {
         this.endAt = endAt;
+        return this;
     }
-
 
     public Integer getDuration() {
         return duration;
     }
 
-
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
-
-
     public Schedule getSchedule() {
         return schedule;
-    }
-
-
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
     }
 
     @Override
@@ -96,5 +80,5 @@ public class Session extends AuditedEntity {
         return "Session [duration=" + duration + ", endAt=" + endAt + ", id=" + id + ", schedule=" + schedule
                 + ", startAt=" + startAt + "]";
     }
-    
+
 }

@@ -33,12 +33,18 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 @RequestMapping("/schedules")
 public class ScheduleController {
 
-	private MeetLogger logger = MeetLogger.instance(ScheduleController.class);
+	private final MeetLogger logger = MeetLogger.instance(ScheduleController.class);
+
+	private final ScheduleRegisterApplication scheduleRegisterApplication;
+
+	private final ScheduleSearchApplication scheduleSearchApplication;
 
 	@Autowired
-	private ScheduleRegisterApplication scheduleRegisterApplication;
-	@Autowired
-	private ScheduleSearchApplication scheduleSearchApplication;
+	public ScheduleController(ScheduleRegisterApplication scheduleRegisterApplication,
+			ScheduleSearchApplication scheduleSearchApplication) {
+		this.scheduleRegisterApplication = scheduleRegisterApplication;
+		this.scheduleSearchApplication = scheduleSearchApplication;
+	}
 
 	/**
 	 * 
@@ -58,6 +64,8 @@ public class ScheduleController {
 			return new ResponseEntity<>(HttpStatus.CREATED);
 		} catch (MeetException e) {
 			return new ResponseEntity<>(e.getMessages(), HttpStatus.valueOf(e.getStatusCode()));
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
@@ -74,6 +82,8 @@ public class ScheduleController {
 			return new ResponseEntity<>(schedule, HttpStatus.OK);
 		} catch (MeetException e) {
 			return new ResponseEntity<>(e.getMessages(), HttpStatus.valueOf(e.getStatusCode()));
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 
 	}
