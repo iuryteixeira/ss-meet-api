@@ -42,6 +42,7 @@ public class SessionOpenApplicationImpl implements SessionOpenApplication {
             logger.error("Error in open session schedule {0} and duration", e, scheduleId, duration);
             new MeetException(MessageFormat.format("Operation failed ", e.getMessage()));
         }
+        return null;
     }
 
 }
