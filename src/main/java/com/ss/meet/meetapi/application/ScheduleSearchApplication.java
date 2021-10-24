@@ -1,7 +1,11 @@
 package com.ss.meet.meetapi.application;
 
-public class ScheduleSearchApplication {
+import java.util.List;
 
-    //List
+import com.ss.meet.meetapi.domain.schedule.Schedule;
 
+public interface ScheduleSearchApplication {
+
+    Schedule findById(Long id);
+    List<Schedule> all();
 }

@@ -49,7 +49,6 @@ public class Session extends AuditedEntity {
         this.duration = Optional.ofNullable(duration).orElse(1);
     }
 
-
     public Long getId() {
         return id;
     }

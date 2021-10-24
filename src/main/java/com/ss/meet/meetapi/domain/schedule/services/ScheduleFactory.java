@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class ScheduleFactory {
 
+    /**
+     * Used to create a schedule with a subject
+     */
     public Schedule create(String subject) {
         return new Schedule(
                 Optional.ofNullable(subject).orElseThrow(() -> new MeetException("Invalid subject to schedule", 400)));
-
     }
 
 }
