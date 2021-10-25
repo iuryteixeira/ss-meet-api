@@ -44,7 +44,7 @@ public class VoteController {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = Vote.class)) }),
             @ApiResponse(responseCode = "400", description = "Invalid informations") })
     @PostMapping("")
-    public ResponseEntity<?> open(@RequestBody @Valid VoteCreateDTO voteDTO) {
+    public ResponseEntity<?> receive(@RequestBody @Valid VoteCreateDTO voteDTO) {
         try {
             logger.info("Received vote: {0}", voteDTO);
             receivedApplication.receive(voteDTO.getSessionId(), 

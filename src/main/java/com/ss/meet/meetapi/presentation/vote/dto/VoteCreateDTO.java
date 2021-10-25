@@ -9,7 +9,7 @@ import javax.validation.constraints.Pattern;
 public class VoteCreateDTO implements Serializable {
 
     @NotBlank(message = "Vote is required")
-    @Pattern(regexp = "[YES|NO]")
+    @Pattern(regexp = "YES|NO")
     private String value;
 
     @NotBlank(message = "User id is required")

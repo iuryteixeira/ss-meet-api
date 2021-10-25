@@ -1,6 +1,7 @@
 package com.ss.meet.meetapi.infra.util;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Application exception
@@ -36,7 +37,7 @@ public class MeetException extends RuntimeException {
     }
 
     public Integer getStatusCode() {
-        return statusCode;
+        return Optional.ofNullable(statusCode).orElse(400);
     }
 
 }

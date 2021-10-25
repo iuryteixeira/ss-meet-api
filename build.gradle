@@ -17,8 +17,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.5.12'
-	
-	// implementation group: 'io.github.cdimascio', name: 'java-dotenv', version: '5.2.2'
+	//AWS Dependencies
+	implementation group: 'io.awspring.cloud', name: 'spring-cloud-aws-dependencies', version: '2.3.2', ext: 'pom'
+	implementation group: 'org.springframework.cloud', name: 'spring-cloud-aws-messaging', version: '2.2.6.RELEASE'
 
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'org.postgresql:postgresql'

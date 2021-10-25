@@ -1,3 +1,7 @@
+# FROM amazon/aws-cli AS aws
+
+# RUN 
+
 FROM openjdk:17-alpine
 
 ENV APP_HOME=/usr/app/

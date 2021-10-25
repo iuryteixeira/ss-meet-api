@@ -1,35 +1,57 @@
 version: '3.8'
 
 services:
-  postgres-server:
-    image: postgres
-    environment:
-      POSTGRES_PASSWORD: "123123"
-    ports:
-      - "15432:5432"
-    volumes:
-      - C:\docker-data\pg:/var/lib/postgresql/data
-    networks:
-      - meet-compose-network
+  # postgressql:
+  #   image: postgres
+  #   environment:
+  #     - POSTGRES_PASSWORD=m123456
+  #     - POSTGRES_USER=mpostgres
+  #     - POSTGRES_DB=meet_api
+  #   ports:
+  #     - "5433:5432"
+  #   volumes:
+  #     - ./env-test/pg:/var/lib/postgresql/data
+  #   networks:
+  #     - meet-network
       
-  pgadmin:
-    image: dpage/pgadmin4
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "app@gmail.com"
-      PGADMIN_DEFAULT_PASSWORD: "123123"
-    ports:
-      - "16543:80"
-    depends_on:
-      - postgres-server
-    networks:
-      - meet-compose-network
+  # pgadmin:
+  #   image: dpage/pgadmin4
+  #   environment:
+  #     PGADMIN_DEFAULT_EMAIL: "app@gmail.com"
+  #     PGADMIN_DEFAULT_PASSWORD: "123123"
+  #   ports:
+  #     - "15433:80"
+  #   depends_on:
+  #     - postgressql
+  #   networks:
+  #     - meet-network
 
-  meet-api:
-    container_name: "meep-api"
-    build: .
-    networks:
-      - meet-compose-network
+  localstack:
+    image: localstack/localstack:latest
+    environment:
+      - AWS_DEFAULT_REGION=eu-central-1
+      - EDGE_PORT=4566
+      - SERVICES=sqs,sns
+    ports:
+      - "4566:4566"
+
+  # meet-api:
+  #   image: 'meet-api:latest'
+  #   container_name: meet-api
+  #   ports:
+  #     - "8084:8080"
+  #   build: .
+  #   environment:
+  #     - SPRING_DATASOURCE_URL=jdbc:postgresql://postgressql:5432/meet_api
+  #     - SPRING_DATASOURCE_USERNAME=mpostgres
+  #     - SPRING_DATASOURCE_PASSWORD=m123456
+  #     - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+  #   networks:
+  #     - meet-network
+  #   depends_on:
+  #     - postgressql
+  #     - localstack
 
 networks:
-  meet-compose-network:
+  meet-network:
     driver: bridge
