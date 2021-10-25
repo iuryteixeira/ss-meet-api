@@ -1,7 +1,5 @@
 package com.ss.meet.meetapi.domain.schedule;
 
-import java.util.Optional;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
