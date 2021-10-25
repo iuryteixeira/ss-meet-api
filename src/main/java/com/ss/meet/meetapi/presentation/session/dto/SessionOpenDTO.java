@@ -15,15 +15,21 @@ public class SessionOpenDTO implements Serializable {
     public Long getScheduleId() {
         return scheduleId;
     }
-    public void setScheduleId(Long scheduleId) {
+
+    public SessionOpenDTO setScheduleId(Long scheduleId) {
         this.scheduleId = scheduleId;
+        return this;
     }
+
     public Integer getDuration() {
         return duration;
     }
-    public void setDuration(Integer duration) {
+
+    public SessionOpenDTO setDuration(Integer duration) {
         this.duration = duration;
+        return this;
     }
+
     @Override
     public String toString() {
         return "SessionOpenDTO [duration=" + duration + ", scheduleId=" + scheduleId + "]";

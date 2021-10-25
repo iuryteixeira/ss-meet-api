@@ -43,8 +43,8 @@ public class SessionController {
             @ApiResponse(responseCode = "201", description = "Session Opened", content = {
                     @Content(mediaType = "application/json", schema = @Schema(implementation = Session.class)) }),
             @ApiResponse(responseCode = "400", description = "Invalid informations") })
-    @PostMapping("/")
-    public ResponseEntity<?> create(@RequestBody @Valid SessionOpenDTO openDTO) {
+    @PostMapping("")
+    public ResponseEntity<?> open(@RequestBody @Valid SessionOpenDTO openDTO) {
         try {
             logger.info("Received session to open: {0}", openDTO);
             return new ResponseEntity<>(sessionOpenApplication.open(openDTO.getScheduleId(), openDTO.getDuration()),
