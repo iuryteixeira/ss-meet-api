@@ -26,6 +26,11 @@ public class ScheduleSearchApplicationImpl implements ScheduleSearchApplication 
     }
 
     @Override
+    public List<Schedule> findByNoResult() {
+        return scheduleRepository.findByResultIsNull();
+    }
+
+    @Override
     public List<Schedule> all() {
         return scheduleRepository.findAll();
     }

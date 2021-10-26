@@ -1,8 +1,11 @@
 package com.ss.meet.meetapi.application.impl;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 import com.ss.meet.meetapi.application.SessionSearchApplication;
+import com.ss.meet.meetapi.domain.schedule.Schedule;
 import com.ss.meet.meetapi.domain.session.Session;
 import com.ss.meet.meetapi.infra.repository.SessionRepository;
 import com.ss.meet.meetapi.infra.util.MeetException;
@@ -33,6 +36,11 @@ public class SessionSearchApplicationImpl implements SessionSearchApplication {
     @Override
     public Session findByScheduleId(Long id) {
         return sessionRepository.findByScheduleId(id).orElseThrow(() -> new MeetException("Session not found.", 404));
+    }
+
+    @Override
+    public List<Session> findFinishedSessionsBySchedule(Schedule schedule) {
+        return sessionRepository.findAllByEndAtLessThanEqualAndScheduleId(LocalDateTime.now(), schedule.getId());
     }
 
 }
