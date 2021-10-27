@@ -4,23 +4,28 @@ import java.util.List;
 
 import com.ss.meet.meetapi.domain.schedule.Schedule;
 import com.ss.meet.meetapi.domain.vote.Vote;
+import com.ss.meet.meetapi.domain.vote.VoteValue;
 
 import org.springframework.stereotype.Service;
 
 @Service
 public class ScheduleSumResultService {
 
-    public void execute(Schedule schedule, final List<Vote> votes) {
+    private final ScheduleContabilizeResultService contabilizeResultService;
+
+    public ScheduleSumResultService(ScheduleContabilizeResultService contabilizeResultService) {
+        this.contabilizeResultService = contabilizeResultService;
+    }
+
+    public void execute(final Schedule schedule, final List<Vote> votes) {
         votes.forEach(v -> {
-            switch (v.getValue()) {
-            case YES:
+            if (v.getValue().equals(VoteValue.YES)) {
                 schedule.addYesVote();
-                break;
-            case NO:
+            } else {
                 schedule.addNoVote();
-                break;
             }
         });
+        contabilizeResultService.execute(schedule);
     }
 
 }
